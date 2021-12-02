@@ -1,0 +1,17 @@
+<script src="knockout.js"></script>
+
+
+<fieldset id="view-one">
+    <legend>view-one</legend>
+    <select multiple="multiple" data-bind="options: names"></select>
+</fieldset>
+
+
+<script>
+    var ViewModelOne = { 
+        names: ko.observableArray()
+    };
+    ko.applyBindings(ViewModelOne, document.getElementById('view-one'));
+
+    setInterval(() => { ViewModelOne.names.push(Math.floor(Math.random() * 100))}, 2000);
+</script>

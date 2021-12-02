@@ -1,0 +1,39 @@
+<script src="knockout.js"></script>
+
+
+<fieldset id="view-one">
+    <legend>view-one</legend>
+    <span data-bind="text: message"></span>
+</fieldset>
+
+<fieldset id="view-two">
+    <legend>view-two</legend>
+    <span data-bind="text: message"></span>
+</fieldset>
+
+
+<script>
+    var ViewModelOne = { message: ko.observable('Hi there from view-one') };
+    ko.applyBindings(ViewModelOne, document.getElementById('view-one'));
+    ViewModelOne.message.subscribe(function(newMessage){
+        console.log('newMessage:', newMessage);
+    });
+    ViewModelOne.message.extend({ notify: 'always' });
+
+    ViewModelOne.message.subscribe(function(oldMessage){
+        console.log('oldMessage:', oldMessage);
+    }, null, "beforeChange");
+
+    ko.when(function(){
+        return ViewModelOne.message == 'SPECIFIC_VALUE';
+    }, function(result){
+        console.log('message is now:', result);
+    })
+
+    var ViewModelTwo = { message: 'Hi there from view-two' };
+    ko.applyBindings(ViewModelTwo, document.getElementById('view-two'));
+    setTimeout(() => {ViewModelOne.message('message is UPDATED after 3 seconds')}, 3000);
+    setTimeout(() => {ViewModelOne.message('SPECIFIC_VALUE')}, 6000);
+    setTimeout(() => {ViewModelOne.message('SPECIFIC_VALUE')}, 8000);
+    setTimeout(() => {ViewModelTwo.message = 'message is UPDATED after 3 seconds'}, 3000);
+</script>
