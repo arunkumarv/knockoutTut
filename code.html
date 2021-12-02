@@ -18,6 +18,7 @@
     ViewModelOne.message.subscribe(function(newMessage){
         console.log('newMessage:', newMessage);
     });
+    ViewModelOne.message.extend({ notify: 'always' });
 
     ViewModelOne.message.subscribe(function(oldMessage){
         console.log('oldMessage:', oldMessage);
@@ -33,5 +34,6 @@
     ko.applyBindings(ViewModelTwo, document.getElementById('view-two'));
     setTimeout(() => {ViewModelOne.message('message is UPDATED after 3 seconds')}, 3000);
     setTimeout(() => {ViewModelOne.message('SPECIFIC_VALUE')}, 6000);
+    setTimeout(() => {ViewModelOne.message('SPECIFIC_VALUE')}, 8000);
     setTimeout(() => {ViewModelTwo.message = 'message is UPDATED after 3 seconds'}, 3000);
 </script>
