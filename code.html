@@ -16,8 +16,12 @@
     var ViewModelOne = { message: ko.observable('Hi there from view-one') };
     ko.applyBindings(ViewModelOne, document.getElementById('view-one'));
     ViewModelOne.message.subscribe(function(newMessage){
-        console.log('message:', newMessage);
-    })
+        console.log('newMessage:', newMessage);
+    });
+
+    ViewModelOne.message.subscribe(function(oldMessage){
+        console.log('oldMessage:', oldMessage);
+    }, null, "beforeChange");
 
     var ViewModelTwo = { message: 'Hi there from view-two' };
     ko.applyBindings(ViewModelTwo, document.getElementById('view-two'));
