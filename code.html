@@ -1,0 +1,23 @@
+<script src="knockout.js"></script>
+
+
+<fieldset id="view-one">
+    <legend>view-one</legend>
+    <span data-bind="text: message"></span>
+</fieldset>
+
+<fieldset id="view-two">
+    <legend>view-two</legend>
+    <span data-bind="text: message"></span>
+</fieldset>
+
+
+<script>
+    var ViewModelOne = { message: 'Hi there from view-one' };
+    ko.applyBindings(ViewModelOne, document.getElementById('view-one'));
+
+    var ViewModelTwo = { message: 'Hi there from view-two' };
+    ko.applyBindings(ViewModelTwo, document.getElementById('view-two'));
+</script>
+
+
