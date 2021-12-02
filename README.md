@@ -1,3 +1,3 @@
-# Oracle-JET samples
+# knockout tutorials
 
 To learn oracle jet.
