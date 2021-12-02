@@ -23,8 +23,15 @@
         console.log('oldMessage:', oldMessage);
     }, null, "beforeChange");
 
+    ko.when(function(){
+        return ViewModelOne.message == 'SPECIFIC_VALUE';
+    }, function(result){
+        console.log('message is now:', result);
+    })
+
     var ViewModelTwo = { message: 'Hi there from view-two' };
     ko.applyBindings(ViewModelTwo, document.getElementById('view-two'));
     setTimeout(() => {ViewModelOne.message('message is UPDATED after 3 seconds')}, 3000);
+    setTimeout(() => {ViewModelOne.message('SPECIFIC_VALUE')}, 6000);
     setTimeout(() => {ViewModelTwo.message = 'message is UPDATED after 3 seconds'}, 3000);
 </script>
