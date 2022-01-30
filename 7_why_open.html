@@ -1,0 +1,12 @@
+<script>
+    let e1 = document.createElement("div");
+    e1.attachShadow({ mode: "closed" });
+    console.log(e1.shadowRoot);
+
+    let e2 = document.createElement("div");
+    e2.attachShadow({ mode: "open" });
+    console.log(e2.shadowRoot);
+</script>
+
+https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
+https://blog.revillweb.com/open-vs-closed-shadow-dom-9f3d7427d1af

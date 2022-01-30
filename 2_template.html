@@ -1,0 +1,17 @@
+<body>
+    <h1>In Body</h1>
+
+    <template id="my-template">
+        <style>h1 { color: red; }</style>
+        <h1>My Template</h1>
+    </template>
+
+    <div id="my-div"></div>
+
+    <script>
+        let myDiv = document.getElementById('my-div');
+        let templateContent = document.getElementById('my-template').content;
+
+        const shadowRoot = myDiv.attachShadow({ mode: 'open' }).appendChild(templateContent.cloneNode(true))
+    </script>
+</body>

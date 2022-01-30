@@ -1,0 +1,22 @@
+<body>
+   
+
+    <h1>This h1 is in body</h1>
+    <div id="my-div"></div>
+
+
+    <script>
+        let myDiv = document.getElementById('my-div');
+        let shadowRoot = myDiv.attachShadow({ mode: 'open' });
+    
+        let h1 = document.createElement('h1');
+        h1.textContent = "This h1 will be attached to the shadow-dom";
+    
+        const style = document.createElement('style');
+        style.textContent = `h1 { color: green;}`
+    
+        shadowRoot.appendChild(style);
+        shadowRoot.appendChild(h1);
+    </script>
+</body>
+

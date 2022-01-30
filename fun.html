@@ -1,0 +1,16 @@
+<script>
+    var fun = function(){
+        console.log('this inside function:',this)
+        this.name = "Arun"
+        function fun(){
+            console.log('this inside constructor:',this);
+            setTimeout(function(){
+                console.log('this inside settimeout:',this);
+                console.log(this.name)
+            }, 100)
+        }
+        return fun;
+    }()
+    new fun()
+    console.log(name)
+</script>

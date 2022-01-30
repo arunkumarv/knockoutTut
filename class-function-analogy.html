@@ -1,0 +1,27 @@
+<script src="knockout.js"></script>
+
+
+<fieldset id="app-view">
+    <legend>app-view</legend>
+    The name is <span data-bind="text: name"></span>
+</fieldset>
+
+<script>
+    //https://extendsclass.com/typescript-to-javascript.html
+    var AppViewModel = /** @class */ (function () {
+        function AppViewModel() {
+            var self = this;
+            this.name = ko.observable('Arunkumar V');
+            setInterval(function() {
+                self.name('Ajithkumar V')
+                self.printName()
+            }, 1000);
+        }
+        AppViewModel.prototype.printName = function () {
+            console.log(this.name());
+        };
+        return AppViewModel;
+    }());
+
+    ko.applyBindings(new AppViewModel(), document.getElementById('app-view'));
+</script>

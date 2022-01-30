@@ -1,0 +1,14 @@
+<script src="knockout.js"></script>
+
+<body>
+    <p><input data-bind="value: name"></p>
+    <p>You entered: <strong data-bind="text: name().toUpperCase()"></strong></p>
+
+    <script>
+        var viewModel = {
+            name: ko.observable('something')
+        }
+
+        ko.applyBindings(viewModel)
+    </script>
+</body>

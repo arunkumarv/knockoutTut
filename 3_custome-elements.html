@@ -1,0 +1,22 @@
+<style>h1{color:red;}</style>
+<h1>This h1 is in body</h1>
+
+<template id="title-template">
+    <h1>My Template Title</h1>
+</template>
+
+<my-title></my-title>
+
+<script>
+    class MyTitle extends HTMLElement {
+        constructor() {
+            super();
+            let templateContent = document.getElementById('title-template').content;
+
+            const shadowRoot = this.attachShadow({ mode: 'open' })
+                .appendChild(templateContent.cloneNode(true))
+        }
+    }
+
+    customElements.define('my-title', MyTitle);
+</script>

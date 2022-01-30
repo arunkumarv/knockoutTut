@@ -1,0 +1,18 @@
+<script src="knockout.js"></script>
+
+<body>
+    
+    <name-editor></name-editor>
+    <name-editor></name-editor>
+
+    <script>
+        ko.components.register('name-editor', {
+            template: '<p><input data-bind="value: name"></p><p>You entered: <strong data-bind="text: name().toUpperCase()"></strong></p>',
+            viewModel: function(){
+                this.name = ko.observable('something')
+            }
+        })
+
+        ko.applyBindings()
+    </script>
+</body>

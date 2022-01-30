@@ -1,0 +1,36 @@
+<script src="knockout.js"></script>
+
+
+<fieldset id="app-view">
+    <legend>app-view</legend>
+    <div data-bind="visible: visibility">
+        You will see this message only when "shouldShowMessage" holds a true value. <span data-bind="text: name"></span>
+    </div>
+</fieldset>
+
+
+<script>
+    var AppViewModel = (function(){
+        function AppViewModel(){
+            console.log("this",this)
+            var self = this;
+            this.name = ko.observable('Arunkumar V')
+            self.visibility = ko.observable(false);
+            setTimeout(function(){
+                self.visibility(true)
+                self.printName()
+                console.log(self)
+                console.log("this",this)
+            }, 3000)
+        }
+
+        AppViewModel.prototype.printName = function(){
+            console.log(this.name());
+        }
+        return AppViewModel;
+    }());
+
+    let appViewModel = new AppViewModel();
+    console.log(appViewModel);
+    ko.applyBindings(appViewModel, document.getElementById('app-view'));
+</script>

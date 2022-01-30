@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Templates and slots</title>
+    <script src="knockout.js"></script>
+
+    <style>
+        h1 {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>I am inside body</h1>
+
+    <template id="template-two">
+        <style>
+            h1 {
+                color: green;
+            }
+        </style>
+        <div id="my-app">
+            <h1 data-bind="text: guyWidth"></h1>
+            <input type="range" min="64" max="512" data-bind="value: guyWidth"><br>
+            <img src="image.png" data-bind="width: guyWidth">
+        </div>
+    </template>
+
+
+    <div data-bind="temp"></div>
+
+    <script>
+        let template = document.getElementById('template-two');
+        let templateContentClone = template.content.cloneNode(true)
+        let myApp = templateContentClone.getElementById("my-app");
+
+        console.log(myApp)
+
+        ko.bindingHandlers["width"] = {
+            update: function (element, valueAccessor) {
+                var value = ko.utils.unwrapObservable(valueAccessor())
+                console.log(value);
+                var width = value + "px";
+                element.style.width = width;
+            }
+        }
+        function ViewModel() {
+            var self = this;
+            self.guyWidth = ko.observable(100);
+        }
+
+        ko.bindingHandlers["temp"] = {
+            init: (element, valueAccessor) => {
+                ko.applyBindings(new ViewModel(), myApp);
+                element.attachShadow({ mode: 'open' })
+                    .appendChild(templateContentClone)
+            }
+        }
+
+        ko.applyBindings();
+
+    </script>
+</body>
+
+</html>
