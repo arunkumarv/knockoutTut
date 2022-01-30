@@ -1,0 +1,37 @@
+<script src="knockout.js"></script>
+
+<div id="my-view">
+    <h2 data-bind="text:title"></h2>
+    <div data-bind="attachShadowDom"></div>
+    <div data-bind="attachNormalDom"></div>
+</div>
+
+<script>
+    function ViewModel() {
+        this.title = ko.observable('Title');
+        this.name = ko.observable("Forwarded Incident Comments: \n\nTo: 'agent1@rightnow.invalid' \nCc: 'None' \nBcc: 'None' \nFrom: AgentFwdOptions1_FN AgentFwdOptions1_LN \nSubject: 'FWD: Incident default value' \nAttachment(s): 'None' \nComments: 'Forward Incident using Workspace Rules ' \n");
+    }
+
+    ko.bindingHandlers['attachShadowDom'] = {
+        init: function (element, valueAccessor, allBindings, viewModel) {
+            const htmlString = `<div id="my-div" style="white-space: pre-wrap"><style>h2 { color: green; }</style><h2 data-bind="text:name"></h2></div>`;
+            var myDiv = new DOMParser().parseFromString(htmlString, 'text/html').getElementById('my-div');
+            var shadowRoot = element.attachShadow({ mode: 'open' });
+            shadowRoot.append(myDiv);
+            ko.applyBindings(viewModel, myDiv);
+        },
+    };
+
+    ko.bindingHandlers['attachNormalDom'] = {
+        init: function (element, valueAccessor, allBindings, viewModel) {
+            const htmlString = `<div id="my-div"><h2 data-bind="text:name"></h2></div>`;
+            var myDiv = new DOMParser().parseFromString(htmlString, 'text/html').getElementById('my-div');
+            element.append(myDiv);
+        },
+    };
+
+    let viewModel = new ViewModel();
+    let view = document.getElementById('my-view');
+
+    ko.applyBindings(viewModel, view);
+</script>
